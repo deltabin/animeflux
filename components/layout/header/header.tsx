@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { HeaderNav } from './header-nav';
 
 export const HeaderLayout = () => {
   return (
@@ -19,26 +20,7 @@ export const HeaderLayout = () => {
             <span className='text-primary'>Flux</span>
           </h2>
         </Link>
-        <nav className='flex items-center space-x-6 text-sm font-medium'>
-          <Link
-            className='transition-colors hover:text-foreground/80 text-foreground/60'
-            href='/anime'
-          >
-            Аниме
-          </Link>
-
-          <Link className='transition-colors hover:text-foreground/80 text-foreground/60' href='/'>
-            Манга
-          </Link>
-
-          <Link className='transition-colors hover:text-foreground/80 text-foreground/60' href='/'>
-            Расписание
-          </Link>
-
-          <Link className='transition-colors hover:text-foreground/80 text-foreground/60' href='/'>
-            Случайное
-          </Link>
-        </nav>
+        <HeaderNav />
 
         <DropdownMenu>
           <DropdownMenuTrigger className='focus:outline-none'>

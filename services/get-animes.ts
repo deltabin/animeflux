@@ -9,3 +9,11 @@ export const getAllAnimes = async () => {
 
   return response.json();
 };
+
+export const getAnimeById = async (id: number) => {
+  const response = await fetch(`${apiUrl}/title?id=${id}`);
+
+  if (!response.ok) throw new Error('Unable to fetch anime.');
+
+  return response.json();
+};
