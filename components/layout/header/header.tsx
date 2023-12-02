@@ -35,7 +35,9 @@ export const HeaderLayout = async () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Профиль</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href='/profile'>Профиль</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>Подписки</DropdownMenuItem>
               <DropdownMenuItem>Настройки</DropdownMenuItem>
               <DropdownMenuItem>

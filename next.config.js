@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.litelibria.com', 'anilibria.tv']
+    domains: ['api.litelibria.com', 'lh3.googleusercontent.com']
   }
 };
 
