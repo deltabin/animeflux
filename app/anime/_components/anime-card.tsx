@@ -1,9 +1,9 @@
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { truncate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 
 interface IAnimeCardItem {
   id: number;

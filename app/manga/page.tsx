@@ -1,3 +1,9 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AnimeFlux | Манга'
+};
+
 export default function MangaPage() {
   return (
     <div>

@@ -1,4 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,10 +8,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { options } from '@/lib/next-auth';
+import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { HeaderNav } from './header-nav';
 
-export const HeaderLayout = () => {
+export const HeaderLayout = async () => {
+  const session = await getServerSession(options);
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
       <div className='flex justify-between px-16 border py-3 items-center'>
@@ -21,22 +25,29 @@ export const HeaderLayout = () => {
           </h2>
         </Link>
         <HeaderNav />
-
-        <DropdownMenu>
-          <DropdownMenuTrigger className='focus:outline-none'>
-            <Avatar>
-              <AvatarImage src='https://github.com/shadcn.png' />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>deltabin.</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Профиль</DropdownMenuItem>
-            <DropdownMenuItem>Подписки</DropdownMenuItem>
-            <DropdownMenuItem>Настройки</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {session && session.user ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger className='focus:outline-none'>
+              <Avatar>
+                <AvatarImage src={session.user.image || ''} />
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Профиль</DropdownMenuItem>
+              <DropdownMenuItem>Подписки</DropdownMenuItem>
+              <DropdownMenuItem>Настройки</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href='/api/auth/signout'>Выйти</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Link href='api/auth/signin'>
+            <Button>Войти</Button>
+          </Link>
+        )}
       </div>
     </header>
   );
